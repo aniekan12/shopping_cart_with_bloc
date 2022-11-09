@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
             create: (_) => ShoppingHomeBloc()..add(GetShoppingItems()),
-            child: ShoppingHome()),
+            child: const ShoppingHome()),
       ],
       child: MaterialApp(
         theme: ThemeData(

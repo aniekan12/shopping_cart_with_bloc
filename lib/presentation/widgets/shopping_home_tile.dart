@@ -30,7 +30,7 @@ class ShoppingHomeTile extends StatelessWidget {
             padding: const EdgeInsets.only(left: 20),
             child: Text(shoppingHomeModel.title!,
                 style: const TextStyle(
-                    fontSize: 15,
+                    fontSize: 12,
                     color: Colors.grey,
                     fontWeight: FontWeight.w600)),
           ),

@@ -17,10 +17,13 @@ class _ShoppingHomeState extends State<ShoppingHome> {
       appBar: AppBar(
         title: const Text('Shopping Home'),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart))
+          IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart))
         ],
       ),
-      body: _buildShoppingHome(),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: _buildShoppingHome(),
+      ),
     );
   }
 
