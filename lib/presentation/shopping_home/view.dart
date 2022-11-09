@@ -47,8 +47,4 @@ class _ShoppingHomeState extends State<ShoppingHome> {
       },
     );
   }
-
-  // Widget _buildShoppingTile(ShoppingHomeLoaded state) {
-  //
-  // }
 }
