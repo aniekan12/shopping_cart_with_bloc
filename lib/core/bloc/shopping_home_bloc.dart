@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:shopping_cart_with_bloc/core/models/shopping_home.dart';
@@ -16,7 +14,6 @@ class ShoppingHomeBloc extends Bloc<ShoppingHomeEvent, ShoppingHomeState> {
       try {
         emit(ShoppingHomeLoading());
         final shoppingItems = await shoppingHomeRepository.getShoppingItems();
-        log(shoppingItems.toString());
         emit(ShoppingHomeLoaded(shoppingHomeModel: shoppingItems));
       } catch (e) {
         emit(ShoppingHomeError(message: e.toString()));

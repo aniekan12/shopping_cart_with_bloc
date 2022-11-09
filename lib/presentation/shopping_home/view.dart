@@ -20,28 +20,32 @@ class _ShoppingHomeState extends State<ShoppingHome> {
           IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart))
         ],
       ),
-      body: Container(
-        child: BlocConsumer<ShoppingHomeBloc, ShoppingHomeState>(
-          listener: (context, state) {
-            // TODO: implement listener
-          },
-          builder: (context, state) {
-            if (state is ShoppingHomeLoading) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is ShoppingHomeLoaded) {
-              _buildShoppingTile(state);
-            }
-            return const Center(child: Text('items loading hopefully :)'));
-          },
-        ),
-      ),
+      body: _buildShoppingHome(),
     );
   }
 
-  Widget _buildShoppingTile(ShoppingHomeLoaded state) {
-    return ListView.builder(itemBuilder: (context, index) {
-      final data = state.shoppingHomeModel[index];
-      return ShoppingHomeTile(shoppingHomeModel: data);
-    });
+  Widget _buildShoppingHome() {
+    return BlocBuilder<ShoppingHomeBloc, ShoppingHomeState>(
+      builder: (context, state) {
+        if (state is ShoppingHomeLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is ShoppingHomeLoaded) {
+          return GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2),
+              itemCount: state.shoppingHomeModel.length,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) {
+                final data = state.shoppingHomeModel[index];
+                return ShoppingHomeTile(shoppingHomeModel: data);
+              });
+        }
+        return const Center(child: Text('items loading hopefully :)'));
+      },
+    );
   }
+
+  // Widget _buildShoppingTile(ShoppingHomeLoaded state) {
+  //
+  // }
 }
